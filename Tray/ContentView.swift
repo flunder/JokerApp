@@ -8,18 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showingAlert = false
-
-    func favoriteAlbum(name: String) {
-        print("it's 7 ways \(name)")
-    }
+    @State private var joke: String = ""
     
     func fetchNorris() {
-        let url = URL(string: "http://www.stackoverflow.com")!
+        let url = URL(string: "https://api.chucknorris.io/jokes/random")!
 
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             guard let data = data else { return }
             print(String(data: data, encoding: .utf8)!)
+            let decodedResponse = try? JSONDecoder().decode(Joke.self, from: data)
+            joke = decodedResponse?.value ?? ""
         }
 
         task.resume()
@@ -27,21 +25,12 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!!!")
+            Text(joke)
+                .font(.system(size: 20))
+                .lineLimit(nil)
+            
             Button("FetchNorris") {
                 fetchNorris()
-            }
-            Button("My Button") {
-                favoriteAlbum(name: "xxx");
-            }
-            Button("Next") {
-                print("x")
-                showingAlert = true
-            }.alert("Important message", isPresented: $showingAlert) {
-                Button("OK", role: .cancel) { }
             }
 
             Divider()
