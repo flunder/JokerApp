@@ -13,10 +13,9 @@ import Foundation
 
 @main
 struct TrayApp: App {
-    @State var currentNumber: String = "1"
     
     var body: some Scene {
-        MenuBarExtra(currentNumber, systemImage: "\(currentNumber).circle") {
+        MenuBarExtra("1", systemImage: "\("1").circle") {
             ContentView().frame(width: 300)
         }.menuBarExtraStyle(.window)
     }
