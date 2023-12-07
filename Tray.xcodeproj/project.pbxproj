@@ -15,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B1B01842B221C860052F5C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0B8E46EF2B1955F70021D19C /* Tray.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tray.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B8E46F22B1955F70021D19C /* TrayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrayApp.swift; sourceTree = "<group>"; };
 		0B8E46F42B1955F70021D19C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +55,7 @@
 		0B8E46F12B1955F70021D19C /* Tray */ = {
 			isa = PBXGroup;
 			children = (
+				0B1B01842B221C860052F5C6 /* Info.plist */,
 				0B8E46F22B1955F70021D19C /* TrayApp.swift */,
 				0B8E46F42B1955F70021D19C /* ContentView.swift */,
 				0B8E46F62B1955F90021D19C /* Assets.xcassets */,
@@ -276,6 +278,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Tray/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tray/Info.plist;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -302,6 +305,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Tray/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tray/Info.plist;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
