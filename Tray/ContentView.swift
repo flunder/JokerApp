@@ -4,7 +4,6 @@
 //
 //  Created by LA on 30/11/2023.
 //
-// Symbols: https://hotpot.ai/free-icons?s=sfSymbols
 
 import SwiftUI
 
@@ -71,7 +70,7 @@ struct ContentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
-                Text("Joke")
+                Text("Joker")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundStyle(.black)
                     .padding(.top, 5)
