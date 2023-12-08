@@ -7,44 +7,63 @@
 
 import SwiftUI
 
+enum MyError: Error {
+    case runtimeError(String)
+}
+
+struct Joke: Codable {
+    let type: String
+    let setup: String
+    let punchline: String
+    let id: Int
+}
+
+struct BlueButton: ButtonStyle {
+    @State private var hovered = false
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .background(Color(red: 0, green: 0, blue: 0, opacity: hovered ? 0.1 : 0))
+            .onHover { isHovered in
+                self.hovered = isHovered
+            }
+            .foregroundStyle(.black)
+            .padding(.vertical, 2)
+            .padding(.horizontal, 2)
+    }
+}
+
 struct ContentView: View {
     @State private var isLoading: Bool = false
-    @State private var isError: Bool = false
-    @State private var joke: String = ""
+    @State private var isError: String = ""
+    @State private var setup: String = ""
+    @State private var punchline: String = ""
+    
+    let url = URL(string: "https://official-joke-api.appspot.com/random_joke")!
     
     func startFetchNorris() {
         Task {
             await fetchNorris()
+            
         }
     }
     
     func fetchNorris() async {
+        isError = "";
         isLoading = true
-        isError = false
         
-        let url = URL(string: "https://api.chucknoreris.io/jokes/random")!
-        
-        let task = URLSession.shared.dataTask(with: url) {( data, response, error ) in
-            // Error fetching ?
-            guard let data = data else {
-                isError = true
+        URLSession.shared.dataTask(with: url) {( data, response, error ) in
+            guard let jsonData = data else {
+                isLoading = false
+                isError = "Error fetching joke"
                 return
             }
-            // Seems alright
-            print(String(data: data, encoding: .utf8)!)
-            let decodedResponse = try? JSONDecoder().decode(Joke.self, from: data)
-            joke = decodedResponse?.value ?? ""
+            // print(String(data: jsonData, encoding: .utf8)!)
+            let decodedResponse = try? JSONDecoder().decode(Joke.self, from: jsonData)
+            self.setup = decodedResponse?.setup ?? ""
+            self.punchline = decodedResponse?.punchline ?? ""
             isLoading = false
-            print("HERE 1!")
-        }
-        
-        // Async call can be too quick or fail
-        // Added delay so it actually shows the spinner
-        try? await Task.sleep(nanoseconds: 500_000_000)
-        
-        isLoading = false
-        task.resume()
-        print("HERE 2!")
+        }.resume()
     }
     
     var body: some View {
@@ -52,18 +71,22 @@ struct ContentView: View {
             Text("Joke")
                 .bold()
                 .padding(.top, 5)
-            VStack {
+            VStack(alignment: .leading) {
                 if isLoading {
                     ProgressView()
                         .controlSize(.small)
                         .offset(y: -5)
                 } else {
-                    if isError {
-                        Text("There was an error")
+                    if isError != "" {
+                        Text(isError)
                     } else {
-                        Text(joke)
-                            .font(.system(size: 20))
-                            .lineLimit(nil)
+                        VStack(alignment: .leading) {
+                            Text(setup)
+                                .lineLimit(nil)
+                            Text(punchline)
+                                .lineLimit(nil)
+                                .padding(.top, 5)
+                        }
                     }
                 }
             }.padding(.vertical, 2)
@@ -81,10 +104,9 @@ struct ContentView: View {
             
             Button("Quit") {
                NSApplication.shared.terminate(nil)
-            }.buttonStyle(PlainButtonStyle())
+            }.buttonStyle(BlueButton())
         }
         .padding(10)
-        .frame(alignment: Alignment.leading)
     }
 }
 

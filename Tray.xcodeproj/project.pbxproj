@@ -11,7 +11,6 @@
 		0B8E46F52B1955F70021D19C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E46F42B1955F70021D19C /* ContentView.swift */; };
 		0B8E46F72B1955F90021D19C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B8E46F62B1955F90021D19C /* Assets.xcassets */; };
 		0B8E46FA2B1955F90021D19C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B8E46F92B1955F90021D19C /* Preview Assets.xcassets */; };
-		0B8E47022B1958F80021D19C /* JokeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E47012B1958F80021D19C /* JokeService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +21,6 @@
 		0B8E46F62B1955F90021D19C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B8E46F92B1955F90021D19C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0B8E46FB2B1955F90021D19C /* Tray.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tray.entitlements; sourceTree = "<group>"; };
-		0B8E47012B1958F80021D19C /* JokeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +59,6 @@
 				0B8E46F62B1955F90021D19C /* Assets.xcassets */,
 				0B8E46FB2B1955F90021D19C /* Tray.entitlements */,
 				0B8E46F82B1955F90021D19C /* Preview Content */,
-				0B8E47012B1958F80021D19C /* JokeService.swift */,
 			);
 			path = Tray;
 			sourceTree = "<group>";
@@ -144,7 +141,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B8E47022B1958F80021D19C /* JokeService.swift in Sources */,
 				0B8E46F52B1955F70021D19C /* ContentView.swift in Sources */,
 				0B8E46F32B1955F70021D19C /* TrayApp.swift in Sources */,
 			);
