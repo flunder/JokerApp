@@ -4,8 +4,13 @@
 //
 //  Created by LA on 30/11/2023.
 //
+// Symbols: https://hotpot.ai/free-icons?s=sfSymbols
 
 import SwiftUI
+
+/*
+    A button that looks a little bit close to the 
+*/
 
 struct OsButton: ButtonStyle {
     @State private var hovered = false
@@ -64,17 +69,32 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Joke")
-                .bold()
-                .padding(.top, 5)
-                .padding(.horizontal, 8)
+        VStack(alignment: .leading, spacing: 5) {
+            HStack {
+                Text("Joke")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(.black)
+                    .padding(.top, 5)
+                    .padding(.horizontal, 8)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Button {
+                    startFetchNorris()
+                } label: {
+                    Image(systemName: "arrow.clockwise.circle.fill")
+                        .font(.system(size: 20))
+                        .padding(.top, 2)
+                }.buttonStyle(.plain)
+                 .padding(.trailing, 4)
+            }.onAppear {
+                startFetchNorris()
+            }
             
             VStack(alignment: .leading) {
                 if isLoading {
                     ProgressView()
                         .controlSize(.small)
-                        .offset(y: -5)
+                        .padding(.vertical, 5)
                 } else {
                     if isError != "" {
                         Text(isError)
@@ -82,23 +102,16 @@ struct ContentView: View {
                         VStack(alignment: .leading) {
                             Text(setup)
                                 .lineLimit(nil)
+                                .padding(.top, 1)
                             Text(punchline)
                                 .lineLimit(nil)
                                 .padding(.top, 5)
+                                .padding(.bottom, 5)
                         }
                     }
                 }
-            }.padding(.vertical, 2)
-             .padding(.horizontal, 8)
-            
-            Divider().padding(.horizontal, 8)
-            
-            Button("FetchNorris") {
-                startFetchNorris()
-            }.buttonStyle(OsButton())
-             .onAppear {
-                startFetchNorris()
-             }
+            }
+            .padding(.horizontal, 8)
             
             Divider().padding(.horizontal, 8)
             
