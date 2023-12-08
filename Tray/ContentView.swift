@@ -7,29 +7,20 @@
 
 import SwiftUI
 
-enum MyError: Error {
-    case runtimeError(String)
-}
-
-struct Joke: Codable {
-    let type: String
-    let setup: String
-    let punchline: String
-    let id: Int
-}
-
-struct BlueButton: ButtonStyle {
+struct OsButton: ButtonStyle {
     @State private var hovered = false
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.vertical, 2)
+            .padding(.horizontal, 8)
             .background(Color(red: 0, green: 0, blue: 0, opacity: hovered ? 0.1 : 0))
+            .cornerRadius(5)
+            .foregroundStyle(.black)
             .onHover { isHovered in
                 self.hovered = isHovered
             }
-            .foregroundStyle(.black)
-            .padding(.vertical, 2)
-            .padding(.horizontal, 2)
     }
 }
 
@@ -39,12 +30,18 @@ struct ContentView: View {
     @State private var setup: String = ""
     @State private var punchline: String = ""
     
+    struct Joke: Codable {
+        let type: String
+        let setup: String
+        let punchline: String
+        let id: Int
+    }
+    
     let url = URL(string: "https://official-joke-api.appspot.com/random_joke")!
     
     func startFetchNorris() {
         Task {
             await fetchNorris()
-            
         }
     }
     
@@ -71,6 +68,8 @@ struct ContentView: View {
             Text("Joke")
                 .bold()
                 .padding(.top, 5)
+                .padding(.horizontal, 8)
+            
             VStack(alignment: .leading) {
                 if isLoading {
                     ProgressView()
@@ -90,23 +89,26 @@ struct ContentView: View {
                     }
                 }
             }.padding(.vertical, 2)
+             .padding(.horizontal, 8)
             
-            Divider()
+            Divider().padding(.horizontal, 8)
             
             Button("FetchNorris") {
                 startFetchNorris()
-            }.buttonStyle(PlainButtonStyle())
+            }.buttonStyle(OsButton())
              .onAppear {
                 startFetchNorris()
-             }.padding(.vertical, 2)
+             }
             
-            Divider()
+            Divider().padding(.horizontal, 8)
             
             Button("Quit") {
                NSApplication.shared.terminate(nil)
-            }.buttonStyle(BlueButton())
+            }
+            .buttonStyle(OsButton())
         }
-        .padding(10)
+        .padding(.vertical, 8)
+        .padding(.horizontal, 4)
     }
 }
 
