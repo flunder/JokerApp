@@ -1,9 +1,16 @@
-# MacOS JokerApp
+# JokerApp (MacOS)
 
 A swiftui app to display jokes in the MacOS system tray.
 
 # React Native
 
-After trying 6 different attempts I gave up on my plan of using react-native and decide to try to build this using swift which worked a charm
+After trying 6 different attempts I gave up on my plan of using react-native and decided to try to build this using swift which worked a charm.
+
+# Xcode + Swift
+
+As I'm new to the swift world, these links helped me: 
+[OSX Tray](https://sarunw.com/posts/swiftui-menu-bar-app/)
+ [Joke](https://www.freecodecamp.org/news/make-rest-api-call-in-swiftui-in-2-minutes/)
+ [SfSymbol](https://hotpot.ai/free-icons?s=sfSymbols)
 
 <img src="demo.gif" alt="Demo gif" width="400" />
